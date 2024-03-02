@@ -14,7 +14,7 @@
 		<table class="table table-bordered table-striped table-hover table-responsive-xl">
 			<thead class="thead-dark">
 				<tr>
-					<th th:replace="fragments :: column_link('id', #{orders.title.id}, 'none')" />
+					<th th:replace="fragments :: column_link('id', #{brand.id}, 'none')" />
 					<th th:replace="fragments :: column_link('customer', #{orders.title.customer}, 'none')" />
 					<th th:replace="fragments :: column_link('total', #{orders.title.total}, 'none')" />
 					<th th:replace="fragments :: column_link('orderTime', #{orders.title.ordertime}, 'none')" />
@@ -23,9 +23,9 @@
 					<th th:replace="fragments :: column_link('destination', #{orders.title.destination}, 'tag')" />
 					</th>
 
-					<th class="hideable-column">
-					<th th:replace="fragments :: column_link('paymentMethod', #{orders.title.paymentmethod}, 'tag')" />
-					</th>
+<!--					<th class="hideable-column">-->
+<!--					<th th:replace="fragments :: column_link('paymentMethod', #{orders.title.paymentmethod}, 'tag')" />-->
+<!--					</th>-->
 
 					<th class="hideable-column">
 					<th th:replace="fragments :: column_link('status', #{orders.title.status}, 'tag')" />
@@ -49,7 +49,7 @@
 						<div th:replace="fragments :: format_time(${order.orderTime})"></div>
 					</td>
 					<td class="hideable-column">[[${order.destination}]]</td>
-					<td class="hideable-column">[[${order.paymentMethod}]]</td>
+<!--					<td class="hideable-column">[[${order.paymentMethod}]]</td>-->
 					<td class="hideable-column">[[${order.status}]]</td>
 
 					<td>
