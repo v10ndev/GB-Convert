@@ -63,23 +63,23 @@
 				<span th:if="${CURRENCY_SYMBOL_POSITION == 'Before price'}" th:remove="tag">[[${CURRENCY_SYMBOL}]]</span><span id="total" class="h2">[[${#numbers.formatDecimal(estimatedTotal, 1, THOUSANDS_POINT_TYPE, DECIMAL_DIGITS, DECIMAL_POINT_TYPE)}]]</span><span th:if="${CURRENCY_SYMBOL_POSITION == 'After price'}" th:remove="tag">[[${CURRENCY_SYMBOL}]]</span>				
 			</div>
 			<div class="mt-2">
-				<div th:if="${shippingSupported}">
+<!--				<div th:if="${shippingSupported}">-->
 				<form th:action="@{/checkout}">
 					<button type="submit" class="btn btn-danger p-3 mt-2">Thanh toán</button>
 				</form>
-				</div>
+<!--				</div>-->
 				
-				<div th:unless="${shippingSupported}">
-					<div><span class="h5 text-warning">Không có giao hàng sẵn dùng cho vị trí của bạn</span></div>
-					
-					<div th:if="${usePrimaryAddressAsDefault}">
-						<a th:href="@{/account_details(redirect=cart)}" class="h6">Cập nhật địa chỉ của bạn</a>
-					</div>
-					
-					<div th:unless="${usePrimaryAddressAsDefault}">
-						<a th:href="@{/address_book(redirect=cart)}" class="h6">Sử dụng địa chỉ vận chuyển khác</a>
-					</div>
-				</div>
+<!--				<div th:unless="${shippingSupported}">-->
+<!--					<div><span class="h5 text-warning">Không có giao hàng sẵn dùng cho vị trí của bạn</span></div>-->
+<!--					-->
+<!--					<div th:if="${usePrimaryAddressAsDefault}">-->
+<!--						<a th:href="@{/account_details(redirect=cart)}" class="h6">Cập nhật địa chỉ của bạn</a>-->
+<!--					</div>-->
+<!--					-->
+<!--					<div th:unless="${usePrimaryAddressAsDefault}">-->
+<!--						<a th:href="@{/address_book(redirect=cart)}" class="h6">Sử dụng địa chỉ vận chuyển khác</a>-->
+<!--					</div>-->
+<!--				</div>-->
 			</div>
 		</div>
 	</div>	

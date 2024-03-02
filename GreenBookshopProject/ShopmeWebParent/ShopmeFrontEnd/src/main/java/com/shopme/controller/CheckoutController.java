@@ -77,18 +77,33 @@ public class CheckoutController {
 
 		Address defaultAddress = addressService.getDefaultAddress(customer);
 		
-		ShippingRate shippingRate = null;
+		ShippingRate shippingRate = new ShippingRate();
+		shippingRate.setRate(3);
+		shippingRate.setDays(3);
+		shippingRate.setCodSupported(true);
 
 		if (defaultAddress != null) {
 			model.addAttribute("shippingAddress", defaultAddress.toString());
-			shippingRate = shipService.getShippingRateForAddress(defaultAddress);
-			
+//			shippingRate = shipService.getShippingRateForAddress(defaultAddress);
+			String district = defaultAddress.getDistrict();
+			if (district == null || district.isEmpty()) {
+				district = defaultAddress.getCommune();
+			}
+			shippingRate.setDistrict(district);
+
+
 			LOGGER.info("CheckoutController | showCheckoutPage | defaultAddress != null | shippingRate ");
 			
 		} else {
 			model.addAttribute("shippingAddress", customer.toString());
-			shippingRate = shipService.getShippingRateForCustomer(customer);
-			
+//			shippingRate = shipService.getShippingRateForCustomer(customer);
+
+			String district = customer.getDistrict();
+			if (district == null || district.isEmpty()) {
+				district = customer.getCommune();
+			}
+			shippingRate.setDistrict(district);
+
 			LOGGER.info("CheckoutController | showCheckoutPage | defaultAddress == null | shippingRate " + shippingRate.toString());
 		}
 		
@@ -128,12 +143,13 @@ public class CheckoutController {
 		
 		LOGGER.info("CheckoutController | placeOrder is called");
 		
-		String paymentType = request.getParameter("paymentMethod");
-		
+//		String paymentType = request.getParameter("paymentMethod");
+		String paymentType = PaymentMethod.COD.toString();
+
 		LOGGER.info("CheckoutController | placeOrder | paymentType :  " + paymentType);
 		
 		PaymentMethod paymentMethod = PaymentMethod.valueOf(paymentType);
-		
+
 		LOGGER.info("CheckoutController | placeOrder | paymentMethod :  " + paymentMethod.toString());
 	
 		Customer customer = authenticationControllerHelperUtil.getAuthenticatedCustomer(request);
@@ -141,18 +157,30 @@ public class CheckoutController {
 		LOGGER.info("CheckoutController | placeOrder | customer :  " + customer.toString());
 
 		Address defaultAddress = addressService.getDefaultAddress(customer);
-		ShippingRate shippingRate = null;
+		ShippingRate shippingRate = new ShippingRate();
+		shippingRate.setRate(3);
+		shippingRate.setDays(3);
+		shippingRate.setCodSupported(true);
 		
 		LOGGER.info("CheckoutController | placeOrder | defaultAddress != null :  " + (defaultAddress != null));
 
 		if (defaultAddress != null) {
-			shippingRate = shipService.getShippingRateForAddress(defaultAddress);
-			
+//			shippingRate = shipService.getShippingRateForAddress(defaultAddress);
+			String district = defaultAddress.getDistrict();
+			if (district == null || district.isEmpty()) {
+				district = defaultAddress.getCommune();
+			}
+			shippingRate.setDistrict(district);
 			LOGGER.info("CheckoutController | placeOrder | shippingRate :  " + shippingRate.toString());
 			
 		} else {
-			shippingRate = shipService.getShippingRateForCustomer(customer);
-			
+//			shippingRate = shipService.getShippingRateForCustomer(customer);
+
+			String district = customer.getDistrict();
+			if (district == null || district.isEmpty()) {
+				district = customer.getCommune();
+			}
+			shippingRate.setDistrict(district);
 			LOGGER.info("CheckoutController | placeOrder | shippingRate :  " + shippingRate.toString());
 		}
 		
@@ -166,13 +194,13 @@ public class CheckoutController {
 		
 		cartService.deleteByCustomer(customer);
 		
-		try {
-			OrderUtil.sendOrderConfirmationEmail(request, createdOrder, settingService);
-		} catch (UnsupportedEncodingException | MessagingException e) {
-			// TODO Auto-generated catch block
-			LOGGER.info("CheckoutController | placeOrder | OrderUtil.sendOrderConfirmationEmail failed");
-			e.printStackTrace();
-		}
+//		try {
+//			OrderUtil.sendOrderConfirmationEmail(request, createdOrder, settingService);
+//		} catch (UnsupportedEncodingException | MessagingException e) {
+//			// TODO Auto-generated catch block
+//			LOGGER.info("CheckoutController | placeOrder | OrderUtil.sendOrderConfirmationEmail failed");
+//			e.printStackTrace();
+//		}
 		
 		return "checkout/order_completed";
 	}

@@ -27,7 +27,7 @@ function decreaseQuantity(link) {
 		quantityInput.val(newQuantity);
 		updateQuantity(productId, newQuantity);
 	} else {
-		showWarningModal('Minimum quantity is 1');
+		showWarningModal('Sản phẩm tối thiểu là 1');
 	}	
 }
 

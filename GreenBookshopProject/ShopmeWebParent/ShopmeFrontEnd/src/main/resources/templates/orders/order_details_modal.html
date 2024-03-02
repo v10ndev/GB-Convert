@@ -34,16 +34,16 @@
 			      <input type="text" readonly class="form-control" th:value="${order.customer.fullName}">
 			    </div>
 			  </div>
+<!--			  <div class="form-group row">-->
+<!--			    <label class="col-sm-2 col-form-label">Chi phí sản phẩm:</label>-->
+<!--			    <div class="col-sm-10">-->
+<!--			      <div th:replace="fragments :: currency_input(${order.productCost})">Chi phí</div>-->
+<!--			    </div>-->
+<!--			  </div>			  		  -->
 			  <div class="form-group row">
-			    <label class="col-sm-2 col-form-label">Chi phí sản phẩm:</label>
+			    <label class="col-sm-2 col-form-label">Tổng tiền:</label>
 			    <div class="col-sm-10">
-			      <div th:replace="fragments :: currency_input(${order.productCost})">Chi phí</div>
-			    </div>
-			  </div>			  		  
-			  <div class="form-group row">
-			    <label class="col-sm-2 col-form-label">Tổng phụ:</label>
-			    <div class="col-sm-10">
-			      <div th:replace="fragments :: currency_input(${order.subtotal})">Tổng phụ</div>
+			      <div th:replace="fragments :: currency_input(${order.subtotal})">Tổng tiền</div>
 			    </div>
 			  </div>
 			  <div class="form-group row">
@@ -52,12 +52,12 @@
 			      <div th:replace="fragments :: currency_input(${order.shippingCost})">Chi phí vận chuyển</div>
 			    </div>
 			  </div>
-			  <div class="form-group row">
-			    <label class="col-sm-2 col-form-label">Thuế:</label>
-			    <div class="col-sm-10">
-			      <div th:replace="fragments :: currency_input(${order.tax})">Thuế</div>
-			    </div>
-			  </div>			  
+<!--			  <div class="form-group row">-->
+<!--			    <label class="col-sm-2 col-form-label">Thuế:</label>-->
+<!--			    <div class="col-sm-10">-->
+<!--			      <div th:replace="fragments :: currency_input(${order.tax})">Thuế</div>-->
+<!--			    </div>-->
+<!--			  </div>			  -->
 
 			  <div class="form-group row">
 			    <label class="col-sm-2 col-form-label">Tổng:</label>
@@ -69,16 +69,17 @@
 			  <div class="form-group row">
 			    <label class="col-sm-2 col-form-label"></label>
 			    <div class="col-sm-10">
-					TOTAL = Tổng phụ + Chi phí vận chuyển + Thuế
+<!--					TOTAL = Tổng tiền + Chi phí vận chuyển + Thuế-->
+					TOTAL = Tổng tiền + Chi phí vận chuyển
 			    </div>
 			  </div>		
 
-			  <div class="form-group row">
-			    <label class="col-sm-2 col-form-label">Phương thức thanh toán:</label>
-			    <div class="col-sm-10">
-			      <span>[[${order.paymentMethod}]]</span>
-			    </div>
-			  </div>			  	
+<!--			  <div class="form-group row">-->
+<!--			    <label class="col-sm-2 col-form-label">Phương thức thanh toán:</label>-->
+<!--			    <div class="col-sm-10">-->
+<!--			      <span>[[${order.paymentMethod}]]</span>-->
+<!--			    </div>-->
+<!--			  </div>			  	-->
 			  <div class="form-group row">
 			    <label class="col-sm-2 col-form-label">Tình trạng:</label>
 			    <div class="col-sm-10">
@@ -106,19 +107,23 @@
 					</div>
 
 					<div>
-						Tổng phụ: [[${detail.quantity}]] X
+						Tổng tiền: [[${detail.quantity}]] X
 						<div th:replace="fragments :: format_currency(${detail.unitPrice})" />
 						 = 
 						 <div th:replace="fragments :: format_currency(${detail.subtotal})" />
 					</div>
-					
-					<div th:if="${!product.reviewedByCustomer && product.customerCanReview}">
-						<a th:href="@{'/write_review/product/' + ${product.id}}" class="btn btn-info">Write Review</a>
-					</div>
 
-					<div th:if="${product.reviewedByCustomer}">
-						<a target="_blank" th:href="@{'/reviews/page/1?sortField=reviewTime&sortDir=desc&keyword=' + ${#strings.substring(product.shortName, 0, 20)}}" class="btn btn-warning">See your Review</a>
+					<div>
+						Chi phí vận chuyển: <div th:replace="fragments :: format_currency(${detail.shippingCost})" />
 					</div>
+					
+<!--					<div th:if="${!product.reviewedByCustomer && product.customerCanReview}">-->
+<!--						<a th:href="@{'/write_review/product/' + ${product.id}}" class="btn btn-info">Write Review</a>-->
+<!--					</div>-->
+
+<!--					<div th:if="${product.reviewedByCustomer}">-->
+<!--						<a target="_blank" th:href="@{'/reviews/page/1?sortField=reviewTime&sortDir=desc&keyword=' + ${#strings.substring(product.shortName, 0, 20)}}" class="btn btn-warning">See your Review</a>-->
+<!--					</div>-->
 									
 				</div>
 				

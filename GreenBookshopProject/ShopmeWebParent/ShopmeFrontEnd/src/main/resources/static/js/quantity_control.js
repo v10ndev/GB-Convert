@@ -8,7 +8,7 @@ $(document).ready(function() {
 		if (newQuantity > 0) {
 			quantityInput.val(newQuantity);
 		} else {
-			showWarningModal('Minimum quantity is 1');
+			showWarningModal('Sản phẩm tối thiểu là 1');
 		}
 	});
 
