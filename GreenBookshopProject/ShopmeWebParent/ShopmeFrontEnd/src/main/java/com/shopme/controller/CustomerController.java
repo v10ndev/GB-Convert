@@ -60,7 +60,7 @@ public class CustomerController {
 		
 		LOGGER.info("CustomerController | createCustomer | customer : " + customer);
 		
-		CustomerRegisterUtil.sendVerificationEmail(request, customer, settingService);
+//		CustomerRegisterUtil.sendVerificationEmail(request, customer, settingService);
 
 		model.addAttribute("pageTitle", "Registration Succeeded!");
 

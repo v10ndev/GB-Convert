@@ -9,7 +9,7 @@ function checkEmailUnique(form) {
 		if (response == "OK") {
 			form.submit();
 		} else if (response == "Duplicated") {
-			showWarningModal("There is another customer having the email " + customerEmail);
+			showWarningModal("Đã tồn tại khách hàng khác với email " + customerEmail);
 		} else {
 			showErrorModal("Unknown response from server");
 		}

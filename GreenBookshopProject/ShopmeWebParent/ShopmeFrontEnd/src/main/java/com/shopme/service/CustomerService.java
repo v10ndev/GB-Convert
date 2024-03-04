@@ -51,11 +51,11 @@ public class CustomerService implements ICustomerService{
 	@Override
 	public void registerCustomer(Customer customer) {
 		CustomerRegisterUtil.encodePassword(customer, passwordEncoder);
-		customer.setEnabled(false);
+		customer.setEnabled(true);
 		customer.setCreatedTime(new Date());
 		customer.setAuthenticationType(AuthenticationType.DATABASE);
-		String randomCode = RandomString.make(64);
-		customer.setVerificationCode(randomCode);
+//		String randomCode = RandomString.make(64);
+//		customer.setVerificationCode(randomCode);
 
 		customerRepo.save(customer);
 		
